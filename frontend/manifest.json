@@ -1,0 +1,25 @@
+{
+  "short_name": "ScoutShopper",
+  "name": "Scout $hopper - Smart Shopping Copilot",
+  "description": "Multi-store price comparison, in-store barcode arbitrage & receipt price protection",
+  "icons": [
+    {
+      "src": "/static/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/static/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/?source=pwa",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/"
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="light dark">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Scout $hopper - Your Smart Shopping &amp; Price Protection Copilot</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=4.0">
+</head>
+<body>
+  <div class="phone" id="phone">
+    <div id="offlineBanner" class="offline-banner hidden">
+      <svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+      <span>Offline Mode: In-Store Dead Zone. Viewing cached drops.</span>
+    </div>
+    <main id="screens" class="screens" tabindex="-1">
+      <section id="screen-home" class="screen" aria-label="Home"></section>
+      <section id="screen-search" class="screen hidden" aria-label="Search"></section>
+      <section id="screen-scan" class="screen hidden" aria-label="Scan"></section>
+      <section id="screen-copilots" class="screen hidden" aria-label="AI Copilots &amp; Tools"></section>
+      <section id="screen-hub" class="screen hidden" aria-label="My Hub"></section>
+      <section id="screen-product" class="screen hidden" aria-label="Product"></section>
+      <section id="screen-cart" class="screen hidden" aria-label="Cart"></section>
+      <section id="screen-wishlist" class="screen hidden" aria-label="Wishlist"></section>
+      <section id="screen-settings" class="screen hidden" aria-label="Settings"></section>
+      <section id="screen-referral" class="screen hidden" aria-label="Share and Earn"></section>
+      <section id="screen-login" class="screen hidden" aria-label="Account Login"></section>
+      <section id="screen-services" class="screen hidden" aria-label="Local Services Price Copilot"></section>
+      <section id="screen-gifts" class="screen hidden" aria-label="Holiday and Seasonal Gift Finder"></section>
+      <section id="screen-receipts" class="screen hidden" aria-label="Receipt Price Protection Watchdog"></section>
+      <section id="screen-sponsor" class="screen hidden" aria-label="Self-Service Advertising Hub"></section>
+      <section id="screen-portal" class="screen hidden" aria-label="Brand portal preview"></section>
+    </main>
+    <nav class="tabbar" id="tabbar" aria-label="Main navigation"></nav>
+    <div id="toastHost" aria-live="polite"></div>
+    <div id="modalHost"></div>
+  </div>
+  <script src="zxing.min.js"></script>
+  <script src="app.js?v=4.0"></script>
+</body>
+</html>

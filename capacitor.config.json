@@ -1,0 +1,40 @@
+{
+  "appId": "app.scoutshopper.copilot",
+  "appName": "Scout $hopper",
+  "webDir": "frontend",
+  "server": {
+    "androidScheme": "https",
+    "cleartext": true
+  },
+  "plugins": {
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#000000",
+      "overlaysWebView": true
+    },
+    "SplashScreen": {
+      "launchShowDuration": 1800,
+      "launchAutoHide": true,
+      "backgroundColor": "#000000",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": false
+    },
+    "Haptics": {},
+    "Keyboard": {
+      "resize": "body",
+      "style": "DARK"
+    },
+    "AdMob": {
+      "appIdAndroid": "ca-app-pub-3940256099942544~3347511713",
+      "appIdIos": "ca-app-pub-3940256099942544~1458602516",
+      "initializeForTesting": true
+    },
+    "BarcodeScanner": {
+      "cameraPermissionRequired": true
+    },
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    }
+  }
+}

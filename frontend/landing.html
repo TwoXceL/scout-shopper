@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scout $hopper - Autonomous Shopping Copilot & Verified Local Service Network</title>
+  <meta name="description" content="Scout $hopper by Adonis Apps. Zero consumer fees, instant in-store barcode arbitrage, Cashier-Shield price protection, and verified B2B contractor dispatch.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0A0F1D;
+      --card-bg: #111827;
+      --card-border: #1F2937;
+      --gold: #F59E0B;
+      --green: #059669;
+      --green-glow: #10B981;
+      --text: #F9FAFB;
+      --muted: #9CA3AF;
+      --subtle: #4B5563;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    header {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      background: rgba(10, 15, 29, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+    .nav-wrap { display: flex; align-items: center; justify-content: space-between; }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+    .brand-logo span { color: var(--gold); }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: color 0.15s ease;
+    }
+    .nav-links a:hover { color: #FFFFFF; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background-color: var(--green);
+      color: #FFFFFF;
+    }
+    .btn-primary:hover { background-color: #047857; }
+    .btn-gold {
+      background-color: var(--gold);
+      color: #000000;
+    }
+    .btn-gold:hover { background-color: #D97706; }
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--card-border);
+      color: var(--text);
+    }
+    .btn-ghost:hover { border-color: var(--muted); }
+    
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 span.gold { color: var(--gold); }
+    .hero h1 span.green { color: var(--green-glow); }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 680px;
+      margin: 0 auto 36px;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Grid Sections */
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--muted);
+      max-width: 580px;
+      margin: 0 auto 48px;
+      font-size: 0.95rem;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 32px 24px;
+      transition: border-color 0.15s ease;
+    }
+    .feature-card:hover { border-color: rgba(245, 158, 11, 0.4); }
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(5, 150, 105, 0.15);
+      color: var(--green-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .feature-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .feature-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Pricing Section */
+    .pricing-section {
+      padding: 60px 0 80px;
+      border-top: 1px solid var(--card-border);
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 36px;
+    }
+    .price-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 36px 28px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .price-card.featured {
+      border-color: var(--gold);
+      box-shadow: 0 0 24px rgba(245, 158, 11, 0.15);
+    }
+    .featured-pill {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: #000000;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 12px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .price-tier-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .price-amount {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+    .price-period { font-size: 0.85rem; color: var(--muted); margin-bottom: 20px; }
+    .price-features {
+      list-style: none;
+      margin-bottom: 32px;
+      flex-grow: 1;
+    }
+    .price-features li {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .price-features li svg { color: var(--green-glow); flex-shrink: 0; }
+    .mor-notice {
+      text-align: center;
+      font-size: 0.76rem;
+      color: var(--subtle);
+      margin-top: 24px;
+    }
+
+    /* Policy & Compliance Box */
+    .compliance-section {
+      background: #0E1424;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 40px;
+      margin: 40px 0 80px;
+    }
+    .compliance-section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .compliance-content {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .compliance-content h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 20px 0 8px;
+    }
+
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 40px 0;
+      font-size: 0.82rem;
+      color: var(--subtle);
+      text-align: center;
+    }
+    footer a { color: var(--muted); text-decoration: none; margin: 0 12px; }
+    footer a:hover { color: #FFFFFF; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container nav-wrap">
+      <a href="/" class="brand-logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path>
+          <path d="M12 6v2m0 8v2"></path>
+        </svg>
+        Scout <span>$hopper</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#consumers">Shoppers</a>
+        <a href="#contractors">Contractors</a>
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/refund">Refunds</a>
+        <a href="/" class="btn btn-primary">Launch App</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="badge">An Adonis Apps Platform</div>
+      <h1>Shop Smart In-Store.<br><span class="gold">Save Thousands</span> on <span class="green">Local Work.</span></h1>
+      <p>
+        Scout $hopper is the autonomous shopping copilot that verifies in-store price match policies, tracks receipts for 90-day refunds, and connects homeowners to pre-screened local contractors with fair-rate pricing.
+      </p>
+      <div class="hero-actions">
+        <a href="/" class="btn btn-primary" style="padding: 12px 28px; font-size: 0.95rem;">Launch Web App (Free)</a>
+        <a href="#contractors" class="btn btn-ghost" style="padding: 12px 24px; font-size: 0.95rem;">Join Contractor Partner Network</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consumer Value Props -->
+  <section id="consumers" class="container">
+    <h2 class="section-title">Zero Consumer Fees. Complete Protection.</h2>
+    <p class="section-sub">Consumers pay $0.00 forever. We make commerce fair through transparent local labor indexes and automated merchant price drops.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>
+            <path d="M17 3h2a2 2 0 0 1 2 2v2"></path>
+            <path d="M21 17v2a2 2 0 0 1-2 2h-2"></path>
+            <path d="M7 21H5a2 2 0 0 1-2-2v-2"></path>
+            <rect width="10" height="8" x="7" y="8" rx="1"></rect>
+          </svg>
+        </div>
+        <h3>Instant Barcode Arbitrage</h3>
+        <p>Scan physical barcodes at Target, Best Buy, Home Depot, and Walmart to instantly surface verified online lower prices.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+          </svg>
+        </div>
+        <h3>Cashier-Shield Policy Engine</h3>
+        <p>Verifies exact store price-match policies before you reach the register, generating instant manager scripts that guarantee approved adjustments.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          </svg>
+        </div>
+        <h3>90-Day Receipt Watchdog</h3>
+        <p>Upload in-store paper receipts or auto-sync digital receipts. We monitor 90-day credit card and store price-protection windows and file refund claims for you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contractor B2B Network -->
+  <section id="contractors" class="pricing-section">
+    <div class="container">
+      <h2 class="section-title">Verified Contractor Partner Network</h2>
+      <p class="section-sub">
+        Receive high-intent homeowner leads indexed to fair regional labor benchmarks. Pre-fund your wallet and pay transparent lead bounties ($25 to $45) with zero middleman markups.
+      </p>
+
+      <div class="pricing-grid">
+        <!-- Tier 149 -->
+        <div class="price-card">
+          <div class="price-tier-name">Starter Pro</div>
+          <div class="price-amount">$149</div>
+          <div class="price-period">per month, billed via Paddle</div>
+          <ul class="price-features">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>3 guaranteed homeowner leads / mo</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Verified Pro directory badge</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Instant lead dispatch via Email & SMS</span>
+            </li>
+          </ul>
+          <a href="/?checkout_tier=TIER_149" class="btn btn-ghost" style="width: 100%;">Select Starter Pro</a>
+        </div>
+
+        <!-- Tier 249 -->
+        <div class="price-card featured">
+          <div class="featured-pill">Most Popular</div>
+          <div class="price-tier-name">Pro Growth</div>
+          <div class="price-amount">$249</div>
+          <div class="price-period">per month, billed via Paddle</div>
+          <ul class="price-features">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>8 guaranteed homeowner leads / mo</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Top 3 search placement in your metro</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Fair wage comparison benchmark badge</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Pre-funded wallet auto-reload ($250)</span>
+            </li>
+          </ul>
+          <a href="/?checkout_tier=TIER_249" class="btn btn-gold" style="width: 100%;">Get Started with Pro Growth</a>
+        </div>
+
+        <!-- Tier 349 -->
+        <div class="price-card">
+          <div class="price-tier-name">Enterprise Regional</div>
+          <div class="price-amount">$349</div>
+          <div class="price-period">per month, billed via Paddle</div>
+          <ul class="price-features">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>15 guaranteed homeowner leads / mo</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Exclusive metro territory spotlight</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Dedicated dispatch queue (1st access)</span>
+            </li>
+          </ul>
+          <a href="/?checkout_tier=TIER_349" class="btn btn-ghost" style="width: 100%;">Select Enterprise</a>
+        </div>
+      </div>
+
+      <div class="mor-notice">
+        Our order process is conducted by our online reseller Paddle.com. Paddle.com is the Merchant of Record for all our B2B orders. Paddle provides all customer service inquiries and handles returns.
+      </div>
+    </div>
+  </section>
+
+  <!-- Legal & Compliance Information Suite -->
+  <section class="container" style="margin: 60px auto 80px;">
+    <!-- Document 1: Terms of Service -->
+    <div id="terms" class="compliance-section" style="margin-bottom: 32px;">
+      <div style="display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--card-border); padding-bottom:12px; margin-bottom:16px;">
+        <h2>Terms of Service</h2>
+        <a href="/terms" class="btn btn-ghost" style="padding:4px 10px; font-size:.75rem;">Standalone Page</a>
+      </div>
+      <div style="font-size:0.8rem; color:var(--gold); margin-bottom:14px; font-weight:600;">
+        Last Updated: November 18, 2026 &bull; Effective Date: November 18, 2026
+      </div>
+      <div class="compliance-content">
+        <p>
+          Welcome to Scout $hopper (the "Service," "Platform," or "App"), owned and operated by Adonis Apps &amp; Studios Inc. (collectively, "Company," "we," "us," or "our"), an Alberta corporation headquartered in Red Deer, Alberta, Canada.
+        </p>
+        <p>
+          By accessing, downloading, or using Scout $hopper via our website (scoutshopper.app), mobile applications, or APIs, you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the Service.
+        </p>
+
+        <h3>1. The Service &amp; Scope</h3>
+        <p>
+          Scout $hopper is a shopping copilot and digital price-protection application designed to help consumers find competitive pricing, discover artisan and independent retail alternatives, organize wishlists, track price adjustments, and earn reward bounties.
+        </p>
+
+        <h3>2. Merchant of Record &amp; Billing (Paddle)</h3>
+        <p>
+          Our order processing and digital billing are conducted through our online reseller and Merchant of Record, Paddle.com Market Ltd ("Paddle").
+        </p>
+        <ul style="margin: 8px 0 12px 20px;">
+          <li>Paddle is the Merchant of Record for all our orders, payments, digital subscriptions, and commercial merchant advertising invoices.</li>
+          <li>Paddle provides all customer service inquiries related to payments, billing disputes, and charges.</li>
+          <li>When you purchase a digital service, subscription, or ad placement on Scout $hopper, your payment is processed by Paddle in accordance with Paddle’s Terms of Service and Privacy Policy.</li>
+        </ul>
+
+        <h3>3. User Accounts &amp; Security</h3>
+        <p>
+          To access certain features (such as receipt price-drop tracking, referral rewards, and saved wishlists), you must create an account. You agree to:
+        </p>
+        <ul style="margin: 8px 0 12px 20px;">
+          <li>Provide accurate and complete registration information.</li>
+          <li>Maintain the security of your password and credentials.</li>
+          <li>Accept responsibility for all activities that occur under your account.</li>
+        </ul>
+
+        <h3>4. Referral Rewards &amp; Cashout Policies</h3>
+        <ul style="margin: 8px 0 12px 20px;">
+          <li>Scout $hopper may offer referral bonuses, bounty payouts, or telemetry incentives ("Rewards").</li>
+          <li>Rewards are non-transferable and can only be redeemed through authorized third-party disbursement partners (including Tremendous API gift card links) once minimum withdrawal thresholds are met.</li>
+          <li>We reserve the right to audit, delay, or revoke any Rewards obtained through fraudulent referrals, automated bots, script manipulation, or violation of these Terms.</li>
+        </ul>
+
+        <h3>5. Affiliate Disclosures &amp; Retailer Relationships</h3>
+        <p>
+          Scout $hopper contains links to third-party merchant websites (such as Amazon, Walmart, Target, Best Buy, Etsy, and Shopify stores).
+        </p>
+        <ul style="margin: 8px 0 12px 20px;">
+          <li><strong>Affiliate Compensation:</strong> We may earn an affiliate commission when you click through our links and complete a purchase, at zero additional cost to you.</li>
+          <li>We do not sell physical goods directly unless expressly stated. We are not responsible for product warranties, defective goods, shipping delays, or return fulfillment of third-party retailers.</li>
+        </ul>
+
+        <h3>6. Intellectual Property</h3>
+        <p>
+          All software, algorithmic recommendation engines, visual interfaces, graphics, code, and trademarks associated with Scout $hopper and Adonis Apps &amp; Studios are the exclusive property of Adonis Apps &amp; Studios Inc. and Spectre Hold Inc.
+        </p>
+
+        <h3>7. Limitation of Liability</h3>
+        <p>
+          To the maximum extent permitted by Canadian law, the Company shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the Service, price discrepancies, or retailer refusal to honor price matches.
+        </p>
+
+        <h3>8. Governing Law</h3>
+        <p>
+          These Terms shall be governed by and construed in accordance with the laws of the Province of Alberta and the federal laws of Canada applicable therein, without regard to conflict of law principles.
+        </p>
+
+        <h3>9. Contact Information</h3>
+        <p>
+          For questions regarding these Terms: Adonis Apps &amp; Studios Inc. &bull; Email: <a href="mailto:support@scoutshopper.app" style="color:var(--gold);">support@scoutshopper.app</a> / <a href="mailto:legal@scoutshopper.app" style="color:var(--gold);">legal@scoutshopper.app</a> &bull; Address: Red Deer, Alberta, Canada.
+        </p>
+      </div>
+    </div>
+
+    <!-- Document 2: Privacy Policy -->
+    <div id="privacy" class="compliance-section" style="margin-bottom: 32px;">
+      <div style="display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--card-border); padding-bottom:12px; margin-bottom:16px;">
+        <h2>Privacy Policy</h2>
+        <a href="/privacy" class="btn btn-ghost" style="padding:4px 10px; font-size:.75rem;">Standalone Page</a>
+      </div>
+      <div style="font-size:0.8rem; color:var(--gold); margin-bottom:14px; font-weight:600;">
+        Last Updated: November 18, 2026 &bull; PIPEDA &amp; Alberta PIPA Compliant
+      </div>
+      <div class="compliance-content">
+        <p>
+          Adonis Apps &amp; Studios Inc. ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal information when you use Scout $hopper (scoutshopper.app), in compliance with the Canadian Personal Information Protection and Electronic Documents Act (PIPEDA), Alberta’s Personal Information Protection Act (PIPA), and international privacy standards.
+        </p>
+
+        <h3>1. Information We Collect</h3>
+        <ul style="margin: 8px 0 12px 20px;">
+          <li><strong>Account Information:</strong> Name, email address, password hash, referral codes, and country/province.</li>
+          <li><strong>Camera &amp; Barcode Data:</strong> When using the in-aisle scanner, camera access is used strictly in real-time on your device to decode UPC/EAN barcodes. We do not store or transmit raw camera video feeds.</li>
+          <li><strong>Receipt &amp; Purchase Data:</strong> If you use our price watchdog by forwarding e-receipts or uploading receipts, we parse merchant names, order numbers, items purchased, prices paid, and purchase dates to monitor 30-day price drops.</li>
+          <li><strong>Payment Information:</strong> Payment data for digital subscriptions or merchant advertising campaigns is collected and processed directly by our Merchant of Record, Paddle. We never store your full credit card number on our servers.</li>
+          <li><strong>Device &amp; Usage Telemetry:</strong> If you opt in, we collect anonymized scan frequency, regional store availability, and app performance data.</li>
+        </ul>
+
+        <h3>2. How We Use Your Information</h3>
+        <p>We use your information to:</p>
+        <ul style="margin: 8px 0 12px 20px;">
+          <li>Provide real-time price comparisons and "Shop Small" alternatives.</li>
+          <li>Continuously monitor purchase prices for post-purchase refund opportunities.</li>
+          <li>Calculate and deliver referral bounties and gift card payouts via Tremendous API.</li>
+          <li>Comply with tax, legal, and regulatory requirements in Canada.</li>
+        </ul>
+
+        <h3>3. How We Share Information</h3>
+        <p>We do not sell your personal identifying information to data brokers. We share data only with trusted service providers essential to app operation:</p>
+        <ul style="margin: 8px 0 12px 20px;">
+          <li><strong>Paddle.com:</strong> Merchant of Record and payment processor.</li>
+          <li><strong>Tremendous:</strong> Payout and gift card disbursement engine.</li>
+          <li><strong>Cloudflare:</strong> CDN caching, security, and inbound receipt email routing.</li>
+        </ul>
+
+        <h3>4. Data Retention &amp; Account Deletion</h3>
+        <p>
+          We retain your personal information only as long as your account is active.
+        </p>
+        <ul style="margin: 8px 0 12px 20px;">
+          <li><strong>Right to Delete:</strong> You have the right to request permanent deletion of your account and all associated receipt/scan data at any time through the in-app settings or by emailing <a href="mailto:privacy@scoutshopper.app" style="color:var(--gold);">privacy@scoutshopper.app</a>.</li>
+        </ul>
+
+        <h3>5. Contact Our Privacy Officer</h3>
+        <p>
+          Privacy Officer: Adonis Apps &amp; Studios Inc. &bull; Email: <a href="mailto:privacy@scoutshopper.app" style="color:var(--gold);">privacy@scoutshopper.app</a> &bull; Location: Red Deer, Alberta, Canada.
+        </p>
+      </div>
+    </div>
+
+    <!-- Document 3: Refund & Cancellation Policy -->
+    <div id="refund" class="compliance-section">
+      <div style="display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--card-border); padding-bottom:12px; margin-bottom:16px;">
+        <h2>Refund &amp; Cancellation Policy</h2>
+        <a href="/refund" class="btn btn-ghost" style="padding:4px 10px; font-size:.75rem;">Standalone Page</a>
+      </div>
+      <div style="font-size:0.8rem; color:var(--gold); margin-bottom:14px; font-weight:600;">
+        Last Updated: November 18, 2026 &bull; 14-Day Paddle Buyer Guarantee
+      </div>
+      <div class="compliance-content">
+        <p>
+          All digital purchases, software subscriptions, and merchant advertising placements for Scout $hopper are billed and fulfilled through our Merchant of Record, Paddle.com Market Ltd ("Paddle").
+        </p>
+
+        <h3>1. Consumer App Services</h3>
+        <p>
+          The Scout $hopper consumer application, barcode scanning, and price protection watchdog are <strong>100% Free Forever</strong>. Consumers are never charged a subscription or fee to scan barcodes or track receipts.
+        </p>
+
+        <h3>2. Paid Merchant Advertising &amp; Sponsored Placements</h3>
+        <p>
+          For merchants and businesses purchasing sponsored "Shop Small" product placements, local service contractor tiers, or lead generation campaigns:
+        </p>
+        <ul style="margin: 8px 0 12px 20px;">
+          <li><strong>Performance-Based Campaigns:</strong> Billed on verified impressions, clicks, or dispatched leads as detailed in the campaign order summary.</li>
+          <li><strong>Cancellations:</strong> You may pause or cancel an active ad campaign at any time directly from the Merchant Dashboard. Unspent pre-funded campaign balances will not be billed.</li>
+        </ul>
+
+        <h3>3. Refund Policy (Paddle Guarantee)</h3>
+        <p>
+          <strong>Digital Services &amp; Software:</strong> If you are dissatisfied with a paid merchant subscription or campaign service, you may request a full refund within 14 days of the transaction date.
+        </p>
+        <p><strong>How to Request a Refund:</strong></p>
+        <ul style="margin: 8px 0 12px 20px;">
+          <li>Contact our support team directly at <a href="mailto:support@scoutshopper.app" style="color:var(--gold);">support@scoutshopper.app</a> with your order number.</li>
+          <li>Or contact Paddle directly via their 24/7 buyer support portal at <a href="https://paddle.net" target="_blank" rel="noopener" style="color:var(--gold);">paddle.net</a> or email <a href="mailto:help@paddle.com" style="color:var(--gold);">help@paddle.com</a>.</li>
+        </ul>
+        <p>
+          Approved refunds are processed back to the original payment method (Credit Card, Apple Pay, PayPal, or Wire) within 3 to 5 business days.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Adonis Apps &amp; Studios Inc. All rights reserved. Scout $hopper is an Adonis Apps product.</p>
+      <div style="margin-top: 10px;">
+        <a href="/terms">Terms of Service</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/refund">Refund &amp; Cancellation Policy</a>
+        <a href="mailto:support@scoutshopper.app">Support</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
