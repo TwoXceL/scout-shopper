@@ -273,11 +273,12 @@ function showInterestsModal(onSaved) {
 
 /* ---------- runtime environment & API host resolution ---------- */
 const isNativeMobile = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
+const LIVE_RAILWAY_URL = 'https://scout-shopper-api-production.up.railway.app';
 const API_BASE = (function() {
   const custom = localStorage.getItem('scout_api_host');
   if (custom) return custom.replace(/\/+$/, '');
   if (isNativeMobile) {
-    return 'http://10.0.2.2:8000';
+    return LIVE_RAILWAY_URL;
   }
   if (location.protocol.startsWith('http')) {
     if (location.port === '8000' || (!location.port && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1')) {
@@ -285,7 +286,7 @@ const API_BASE = (function() {
     }
     return 'http://127.0.0.1:8000';
   }
-  return 'http://127.0.0.1:8000';
+  return LIVE_RAILWAY_URL;
 })();
 
 /* ---------- state ---------- */
