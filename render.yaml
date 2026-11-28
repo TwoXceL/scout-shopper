@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: scout-shopper-api
+    runtime: docker
+    dockerfilePath: Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: PAYPAL_MERCHANT_EMAIL
+        value: "2xcelmedia@gmail.com"
+      - key: PAYPAL_PAYOUT_DESTINATION
+        value: "2xcelmedia@gmail.com"
+      - key: DEFAULT_REF_CODE
+        value: "2xcel"
+      - key: AMAZON_ASSOCIATES_TAG
+        value: "scoutshopper-20"
+      - key: AMAZON_CA_ASSOCIATES_TAG
+        value: "scoutshopper-ca-20"
+      - key: SKIMLINKS_PUB_ID
+        sync: false
+      - key: SHAREASALE_AFFILIATE_ID
+        sync: false
+      - key: SHAREASALE_ETSY_MERCHANT_ID
+        value: "5093"
+      - key: PAYPAL_ENVIRONMENT
+        value: "SANDBOX"
